@@ -53,15 +53,7 @@ namespace W8Praktikum
             sqlAdapter = new MySqlDataAdapter(sqlCommand);
             sqlAdapter.Fill(dataManagerDanCaptainKiri);
             OutputManagerKiri.Text = dataManagerDanCaptainKiri.Rows[0]["Manager Name"].ToString();
-            OutputKaptenKiri.Text = dataManagerDanCaptainKiri.Rows[0]["Captain Name"].ToString();
-
-            DataTable Stadium = new DataTable();
-            sqlQuery = "SELECT concat(home_stadium, ', ',team.city) as `Stadium`, capacity as `Capacity` FROM team WHERE team_id = '" + ComboBoxKiri.SelectedValue.ToString() + "'";
-            sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
-            sqlAdapter = new MySqlDataAdapter(sqlCommand);
-            sqlAdapter.Fill(Stadium);
-            OutputStadium.Text = Stadium.Rows[0]["Stadium"].ToString();
-            OutputCapacity.Text = Stadium.Rows[0]["Capacity"].ToString();
+            OutputKaptenKiri.Text = dataManagerDanCaptainKiri.Rows[0]["Captain Name"].ToString();            
         }
 
         private void ComboBoxKanan_SelectedIndexChanged(object sender, EventArgs e)
@@ -72,7 +64,15 @@ namespace W8Praktikum
             sqlAdapter = new MySqlDataAdapter(sqlCommand);
             sqlAdapter.Fill(dataManagerDanCaptainKanan);
             OutputManagerKanan.Text = dataManagerDanCaptainKanan.Rows[0]["Manager Name"].ToString();
-            OutputKaptenKanan.Text = dataManagerDanCaptainKanan.Rows[0]["Captain Name"].ToString();            
+            OutputKaptenKanan.Text = dataManagerDanCaptainKanan.Rows[0]["Captain Name"].ToString();
+
+            DataTable Stadium = new DataTable();
+            sqlQuery = "SELECT concat(home_stadium, ', ',team.city) as `Stadium`, capacity as `Capacity` FROM team WHERE team_id = '" + ComboBoxKiri.SelectedValue.ToString() + "'";
+            sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
+            sqlAdapter = new MySqlDataAdapter(sqlCommand);
+            sqlAdapter.Fill(Stadium);
+            OutputStadium.Text = Stadium.Rows[0]["Stadium"].ToString();
+            OutputCapacity.Text = Stadium.Rows[0]["Capacity"].ToString();
         }
     }
 }
